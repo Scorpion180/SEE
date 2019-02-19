@@ -1,7 +1,7 @@
 {
-    "name": "laravel/laravel",
+    "name": "efren/SEE",
     "type": "project",
-    "description": "The Laravel Framework.",
+    "description": "Sistema de evaluación electronico",
     "keywords": [
         "framework",
         "laravel"
