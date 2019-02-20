@@ -4,9 +4,9 @@ Control y gestión de la evaluación de clases para docentes de todos lo niveles
 # Autor
 -Efren Hernández Doroteo
 # Instalación
-
-```
 ### Todo esto en la carpeta del proyecto
+```
+
 git clone https://github.com/Scorpion180/SEE
 composer install
 cp .env.example .env
