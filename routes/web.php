@@ -33,3 +33,6 @@ Route::get('/bienvenida/{nombre}/{apellido?}',function($nombre,$apellido = null)
     //Compact para los mismos nombres de variables que recibiste
     //return view('pages.bienvenida',compact('nombre','apellido'));
 });
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
