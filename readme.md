@@ -1,10 +1,15 @@
-#Sistema de evaluación electrónica
+# Sistema de evaluación electrónica
 
-Control y gestión de la evaluación de clases para docentes de todos lo niveles educativos
-#Autor
+Control y gestión de la evaluación de clases para docentes de todos lo niveles educativos incluyendo evaluación de trabajos
+# Autor
 -Efren Hernández Doroteo
-#Instalación
--git clone https://github.com/Scorpion180/SEE
--composer install
+# Instalación
+### Todo esto en la carpeta del proyecto
+```
+
+git clone https://github.com/Scorpion180/SEE
+composer install
 cp .env.example .env
 php artisan key:generate
+php artisan serve
+```
