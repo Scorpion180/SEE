@@ -22,3 +22,14 @@ Route::get('/info', function () {
 Route::get('/contacto', function () {
     return view("pages.contacto");
 });
+
+//apellido? para indicar que puede o no recibirlo
+Route::get('/bienvenida/{nombre}/{apellido?}',function($nombre,$apellido = null){
+    return view('pages.bienvenida',compact('nombre','apellido'));
+    
+    //Para mandar valores a la vista
+    //->with(['nombre'=>$nombre,'apellido'=>$apellido]);
+
+    //Compact para los mismos nombres de variables que recibiste
+    //return view('pages.bienvenida',compact('nombre','apellido'));
+});
