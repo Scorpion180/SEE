@@ -16,4 +16,7 @@ class PagesController extends Controller
     public function bienvenido($nombre,$apellido = null){
         return view('pages.bienvenida',compact('nombre','apellido'));
     }
+    public function equipo(){
+        return view('pages.equipo');
+    }
 }

@@ -26,6 +26,7 @@ Route::get('/bienvenida/{nombre}/{apellido?}','PagesController@bienvenido');
 
     //Compact para los mismos nombres de variables que recibiste
     //return view('pages.bienvenida',compact('nombre','apellido'));
+Route::get('/equipo','PagesController@equipo');
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
