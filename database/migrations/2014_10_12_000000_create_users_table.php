@@ -8,7 +8,9 @@ class CreateUsersTable extends Migration
 {
     /**
      * Run the migrations.
-     *
+     *COMANDO: php artisan migrate
+     *para crear todas las tablas
+     *COMANDO: php artisan make:migrate --create-NOMBRE create_NOMBRE_tabla
      * @return void
      */
     public function up()
