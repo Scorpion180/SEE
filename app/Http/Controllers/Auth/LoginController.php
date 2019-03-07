@@ -32,6 +32,12 @@ class LoginController extends Controller
      *
      * @return void
      */
+    /** protected function redirectTo(){
+    *    session(['apodo'=>'Sam']);
+        
+     *   return '/bienvenida'
+    *}
+    */
     public function __construct()
     {
         $this->middleware('guest')->except('logout');
