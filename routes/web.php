@@ -17,6 +17,8 @@ Route::get('/', function () {
 
 Route::get('/info','PagesController@info');
 
+Route::get('/prueba','PagesController@prueba');
+
 Route::get('/contacto', 'PagesController@contacto');
 
 //apellido? para indicar que puede o no recibirlo

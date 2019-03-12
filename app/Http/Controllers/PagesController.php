@@ -19,4 +19,7 @@ class PagesController extends Controller
     public function equipo(){
         return view('pages.equipo');
     }
+    public function prueba(){
+        return view('layouts.black');
+    }
 }

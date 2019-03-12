@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.black')
 
 @section('content')
     <h1>Bienvenida</h1>
