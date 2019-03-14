@@ -11,6 +11,18 @@
 |
 */
 Route::get('/user','UserController@index')->name('user.index');
+
+Route::resource('usuario','UsuarioController');
+/*Route::get('/usuario/crear','UsuarioController@create');
+Route::get('/usuario/crear','UsuarioController@store');
+
+Route::get('/usuario/{id}','UsuarioController@show');
+
+Route::get('/usuario/editar','UsuarioController@edit');
+Route::get('/usuario/editar','UsuarioController@update');
+
+Route::get('/usuario/eliminar','UsuarioController@destroy');*/
+
 Route::get('/', function () {
     return view('welcome');
 });
