@@ -14,7 +14,8 @@ class UsuarioController extends Controller
      */
     public function index()
     {
-        return view('users.usuarioIndex');
+        $docs = UserModel::all();
+        return view('users.usuarioIndex',compact('docs'));
     }
 
     /**
@@ -42,7 +43,7 @@ class UsuarioController extends Controller
         $usr->password = $request->password;
         $usr->save();
 
-        return view('pages.equipo');
+        return view('usuario.index');
     }
 
     /**
@@ -51,9 +52,10 @@ class UsuarioController extends Controller
      * @param  \App\UserModel  $userModel
      * @return \Illuminate\Http\Response
      */
-    public function show(UserModel $userModel)
+    public function show($id)
     {
-        
+        $user = UserModel::find($id);
+        return view('users.usuarioShow',compact('user'));
     }
 
     /**
@@ -62,9 +64,10 @@ class UsuarioController extends Controller
      * @param  \App\UserModel  $userModel
      * @return \Illuminate\Http\Response
      */
-    public function edit(UserModel $userModel)
+    public function edit($id)
     {
-        //
+        $user = UserModel::find($id);
+        return view("users.usuarioForm",compact('user'));
     }
 
     /**
@@ -76,7 +79,13 @@ class UsuarioController extends Controller
      */
     public function update(Request $request, UserModel $userModel)
     {
-        //
+        $userModel->name = $request->input('name');
+        $userModel->email = $request->input('email');
+        $userModel->codigo = $request->input('codigo');
+        $userModel->password = $request->input('password');
+
+        $userModel->save();
+        return redirect()->route('usuario.index');
     }
 
     /**
@@ -85,8 +94,10 @@ class UsuarioController extends Controller
      * @param  \App\UserModel  $userModel
      * @return \Illuminate\Http\Response
      */
-    public function destroy(UserModel $userModel)
+    public function destroy($id)
     {
-        //
+        $user = UserModel::find($id);
+        $user->delete();
+        return redirect()->route('usuario.index');
     }
 }
