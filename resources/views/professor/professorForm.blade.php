@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="page-header">
-    <h1>Registro de usuario</h1>
+    <h1>Registro de profesores</h1>
 </div>
 <div class="row">
     <div class="col-md-8 offset-2">
@@ -22,11 +22,11 @@
                             </div>
                         @endif
 
-                        @if(isset($user))
-                        <form action="{{route('usuario.update',$user->id)}}" method="POST">
+                        @if(isset($professor))
+                        <form action="{{route('profesor.update',$professor->id)}}" method="POST">
                         <input type="hidden" name="_method" value="PUT">
                         @else
-                            <form action="{{route('usuario.store')}}" method="POST">
+                            <form action="{{route('profesor.store')}}" method="POST">
                         @endif
                         @csrf
                             <div class="row">
@@ -38,13 +38,13 @@
                                     @endif
                                     <div class="form-group">
                                         <label>Nombre</label>
-                                        <input type="text" class="form-control" name="name" value="{{$user->name ?? ''}}{{ old('name') }}">
+                                        <input type="text" class="form-control" name="name" value="{{$professor->name ?? ''}}{{ old('name') }}">
                                     </div>
                                 </div>
                                 <div class="col-md-4 px-md-1">
                                     <div class="form-group">
                                         <label>Usuario</label>
-                                        <input type="text" class="form-control" name="username" value="{{$user->usuario ?? ''}}{{ old('username') }}">
+                                        <input type="text" class="form-control" name="professorname" value="{{$professor->usuario ?? ''}}{{ old('professorname') }}">
                                     </div>
                                 </div>
                             </div>
@@ -52,13 +52,13 @@
                                 <div class="col-md-8 pr-md-1">
                                 <div class="form-group">
                                     <label for="Email">Email</label>
-                                    <input type="email" class="form-control" placeholder="ejemplo@email.com" name="email" value="{{$user->email ?? ''}}{{ old('email') }}">
+                                    <input type="email" class="form-control" placeholder="ejemplo@email.com" name="email" value="{{$professor->email ?? ''}}{{ old('email') }}">
                                 </div>
                                 </div>
                                 <div class="col-md-4 px-md-1">
                                 <div class="form-group">
                                     <label for="Codigo">Código</label>
-                                    <input type="text" class="form-control" name="codigo" value="{{$user->codigo ?? ''}}{{ old('codigo') }}">
+                                    <input type="text" class="form-control" name="codigo" value="{{$professor->codigo ?? ''}}{{ old('codigo') }}">
                                 </div>
                                 </div>
                             </div>
@@ -66,7 +66,7 @@
                                 <div class="col-md-12 pr-md-1">
                                 <div class="form-group">
                                     <label>Contraseña</label>
-                                    <input type="password" class="form-control" name="password" value="{{$user->password ?? ''}}{{ old('password') }}">
+                                    <input type="password" class="form-control" name="password" value="{{$professor->password ?? ''}}{{ old('password') }}">
                                 </div>
                                 </div>
                             </div>

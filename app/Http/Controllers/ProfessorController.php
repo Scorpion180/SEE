@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Professor;
 use App\UserModel;
 use Illuminate\Http\Request;
 
-class UsuarioController extends Controller
+class ProfessorController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,8 +15,7 @@ class UsuarioController extends Controller
      */
     public function index()
     {
-        $docs = UserModel::all();
-        return view('users.usuarioIndex',compact('docs'));
+        //
     }
 
     /**
@@ -25,7 +25,7 @@ class UsuarioController extends Controller
      */
     public function create()
     {
-        return view('users.usuarioForm');
+        return view('professor.professorForm');
     }
 
     /**
@@ -45,62 +45,53 @@ class UsuarioController extends Controller
         $usr->codigo = $request->codigo;
         $usr->password = $request->password;
         $usr->save();
-
-        return view('usuario.index');
+        $professor = new Professor();
+        $professor->id_user = $usr->id;
+        dd($professor);
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\UserModel  $userModel
+     * @param  \App\Professor  $professor
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Professor $professor)
     {
-        $user = UserModel::find($id);
-        return view('users.usuarioShow',compact('user'));
+        //
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\UserModel  $userModel
+     * @param  \App\Professor  $professor
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Professor $professor)
     {
-        $user = UserModel::find($id);
-        return view("users.usuarioForm",compact('user'));
+        //
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\UserModel  $userModel
+     * @param  \App\Professor  $professor
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, UserModel $userModel)
+    public function update(Request $request, Professor $professor)
     {
-        $userModel->name = $request->input('name');
-        $userModel->email = $request->input('email');
-        $userModel->codigo = $request->input('codigo');
-        $userModel->password = $request->input('password');
-
-        $userModel->save();
-        return redirect()->route('usuario.index');
+        //
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\UserModel  $userModel
+     * @param  \App\Professor  $professor
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Professor $professor)
     {
-        $user = UserModel::find($id);
-        $user->delete();
-        return redirect()->route('usuario.index');
+        //
     }
 }

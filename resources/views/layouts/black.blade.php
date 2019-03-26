@@ -75,7 +75,7 @@
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="/user">
+              <a class="nav-link" href="{{action('UsuarioController@index')}}">
                 <i class="tim-icons icon-bell-55"></i>usuarios
               </a>
             </li>

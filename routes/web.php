@@ -13,6 +13,7 @@
 Route::get('/user','UserController@index')->name('user.index');
 
 Route::resource('usuario','UsuarioController');
+Route::resource('profesor','ProfessorController');
 /*Route::get('/usuario/crear','UsuarioController@create');
 Route::get('/usuario/crear','UsuarioController@store');
 
