@@ -24,7 +24,7 @@
 
                         @if(isset($user))
                         <form action="{{route('usuario.update',$user->id)}}" method="POST">
-                        <input type="hidden" name="_method" value="PUT">
+                        <input type="hidden" name="_method" value="PATCH">
                         @else
                             <form action="{{route('usuario.store')}}" method="POST">
                         @endif

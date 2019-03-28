@@ -82,6 +82,7 @@ class UsuarioController extends Controller
      */
     public function update(Request $request, UserModel $userModel)
     {
+        //$userModel->update($request->all()); siempre y cuando tengas definido fillable
         $userModel->name = $request->input('name');
         $userModel->email = $request->input('email');
         $userModel->codigo = $request->input('codigo');

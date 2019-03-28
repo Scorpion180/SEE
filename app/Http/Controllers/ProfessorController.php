@@ -40,6 +40,7 @@ class ProfessorController extends Controller
         'email'=>'email|unique:users,email',
         'password'=>'required|min:9']);
         $usr = new UserModel();
+        //$usr = new UserModel($request->all());
         $usr->name = $request->name;
         $usr->email = $request->email;
         $usr->codigo = $request->codigo;
