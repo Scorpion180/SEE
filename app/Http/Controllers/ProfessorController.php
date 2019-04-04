@@ -3,7 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Professor;
-use App\UserModel;
+use App\User;
+use App\Department;
 use Illuminate\Http\Request;
 
 class ProfessorController extends Controller
@@ -25,7 +26,8 @@ class ProfessorController extends Controller
      */
     public function create()
     {
-        return view('professor.professorForm');
+        $departments = Department::all();
+        return view('professor.professorForm',compact('departments'));
     }
 
     /**
@@ -36,19 +38,21 @@ class ProfessorController extends Controller
      */
     public function store(Request $request)
     {
+        //dd($request->all());
         $request->validate(['name'=>'required|max:55',
         'email'=>'email|unique:users,email',
-        'password'=>'required|min:9']);
-        $usr = new UserModel();
-        //$usr = new UserModel($request->all());
-        $usr->name = $request->name;
-        $usr->email = $request->email;
-        $usr->codigo = $request->codigo;
-        $usr->password = $request->password;
+        'password'=>'required|min:9',
+        'username'=>'required',
+        'code'=>'required|min:9|max:9',
+        'department_id'=>'required']);
+        $usr = new User($request->except('department_id'));
         $usr->save();
         $professor = new Professor();
-        $professor->id_user = $usr->id;
-        dd($professor);
+        $professor->user_id=$usr->id;
+        $professor->department_id=$request->department_id;
+        
+        $professor->save();
+        dd($professor->User());
     }
 
     /**

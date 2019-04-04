@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Department;
+use App\Day;
 use Illuminate\Http\Request;
 
-class DepartmentController extends Controller
+class dayController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,8 +14,7 @@ class DepartmentController extends Controller
      */
     public function index()
     {
-        $departments = Department::all();
-        return view('department.index',compact('departments'));
+        //
     }
 
     /**
@@ -25,7 +24,7 @@ class DepartmentController extends Controller
      */
     public function create()
     {
-        return view('department.form');
+        //
     }
 
     /**
@@ -36,20 +35,16 @@ class DepartmentController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate(['name'=>'required|max:55']);
-        $dpt = new Department($request->all());
-        $dpt->save();
-        $departments = Department::all();
-        return view('department.index',compact('departments'));
+        //
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Department  $department
+     * @param  \App\Day  $day
      * @return \Illuminate\Http\Response
      */
-    public function show(Department $department)
+    public function show(Day $day)
     {
         //
     }
@@ -57,10 +52,10 @@ class DepartmentController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Department  $department
+     * @param  \App\Day  $day
      * @return \Illuminate\Http\Response
      */
-    public function edit(Department $department)
+    public function edit(Day $day)
     {
         //
     }
@@ -69,10 +64,10 @@ class DepartmentController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Department  $department
+     * @param  \App\Day  $day
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Department $department)
+    public function update(Request $request, Day $day)
     {
         //
     }
@@ -80,10 +75,10 @@ class DepartmentController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Department  $department
+     * @param  \App\Day  $day
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Department $department)
+    public function destroy(Day $day)
     {
         //
     }

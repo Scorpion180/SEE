@@ -23,7 +23,7 @@
                         @endif
 
                         @if(isset($professor))
-                        <form action="{{route('profesor.update',$professor->id)}}" method="POST">
+                        <form action="{{route('profesor.update',$professor->id)}}" method="POST" id="form">
                         <input type="hidden" name="_method" value="PUT">
                         @else
                             <form action="{{route('profesor.store')}}" method="POST">
@@ -44,7 +44,7 @@
                                 <div class="col-md-4 px-md-1">
                                     <div class="form-group">
                                         <label>Usuario</label>
-                                        <input type="text" class="form-control" name="professorname" value="{{$professor->usuario ?? ''}}{{ old('professorname') }}">
+                                        <input type="text" class="form-control" name="username" value="{{$professor->usuario ?? ''}}{{ old('professorname') }}">
                                     </div>
                                 </div>
                             </div>
@@ -58,16 +58,26 @@
                                 <div class="col-md-4 px-md-1">
                                 <div class="form-group">
                                     <label for="Codigo">Código</label>
-                                    <input type="text" class="form-control" name="codigo" value="{{$professor->codigo ?? ''}}{{ old('codigo') }}">
+                                    <input type="text" class="form-control" name="code" value="{{$professor->codigo ?? ''}}{{ old('codigo') }}">
                                 </div>
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="col-md-12 pr-md-1">
-                                <div class="form-group">
-                                    <label>Contraseña</label>
-                                    <input type="password" class="form-control" name="password" value="{{$professor->password ?? ''}}{{ old('password') }}">
+                                <div class="col-md-8 pr-md-1">
+                                    <div class="form-group">
+                                        <label>Contraseña</label>
+                                        <input type="password" class="form-control" name="password" value="{{$professor->password ?? ''}}{{ old('password') }}">
+                                    </div>
                                 </div>
+                                <div class="col-md-4 px-md-1">
+                                    <div class="form-group">
+                                        <label for="Departamento">Departamento</label>
+                                        <select name="department_id" form="form">
+                                        @foreach($departments as $dpt)
+                                            <option value="{{$dpt->id}}">{{$dpt->name}}</option>
+                                        @endforeach
+                                        </select>                                
+                                    </div>
                                 </div>
                             </div>
                         </div>

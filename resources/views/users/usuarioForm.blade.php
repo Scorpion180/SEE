@@ -58,7 +58,7 @@
                                 <div class="col-md-4 px-md-1">
                                 <div class="form-group">
                                     <label for="Codigo">Código</label>
-                                    <input type="text" class="form-control" name="codigo" value="{{$user->codigo ?? ''}}{{ old('codigo') }}">
+                                    <input type="text" class="form-control" name="code" value="{{$user->codigo ?? ''}}{{ old('codigo') }}">
                                 </div>
                                 </div>
                             </div>

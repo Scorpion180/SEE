@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\UserModel;
+use App\User;
 use Illuminate\Http\Request;
 
 class UsuarioController extends Controller
@@ -14,7 +14,7 @@ class UsuarioController extends Controller
      */
     public function index()
     {
-        $docs = UserModel::all();
+        $docs = User::all();
         return view('users.usuarioIndex',compact('docs'));
     }
 
@@ -38,38 +38,37 @@ class UsuarioController extends Controller
     {
         $request->validate(['name'=>'required|max:55',
         'email'=>'email|unique:users,email',
-        'password'=>'required|min:9']);
-        $usr = new UserModel();
-        $usr->name = $request->name;
-        $usr->email = $request->email;
-        $usr->codigo = $request->codigo;
-        $usr->password = $request->password;
+        'password'=>'required|min:9',
+        'username'=>'required',
+        'code'=>'required|min:9|max:9']);
+        $usr = new User($request->all());
         $usr->save();
 
-        return view('usuario.index');
+        $docs = User::all();
+        return view('users.usuarioIndex',compact('docs'));
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\UserModel  $userModel
+     * @param  \App\User  $user
      * @return \Illuminate\Http\Response
      */
     public function show($id)
     {
-        $user = UserModel::find($id);
+        $user = User::find($id);
         return view('users.usuarioShow',compact('user'));
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\UserModel  $userModel
+     * @param  \App\User  $user
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
     {
-        $user = UserModel::find($id);
+        $user = User::find($id);
         return view("users.usuarioForm",compact('user'));
     }
 
@@ -77,30 +76,30 @@ class UsuarioController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\UserModel  $userModel
+     * @param  \App\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, UserModel $userModel)
+    public function update(Request $request, User $user)
     {
-        //$userModel->update($request->all()); siempre y cuando tengas definido fillable
-        $userModel->name = $request->input('name');
-        $userModel->email = $request->input('email');
-        $userModel->codigo = $request->input('codigo');
-        $userModel->password = $request->input('password');
+        //$user->update($request->all()); siempre y cuando tengas definido fillable
+        $user->name = $request->input('name');
+        $user->email = $request->input('email');
+        $user->codigo = $request->input('codigo');
+        $user->password = $request->input('password');
 
-        $userModel->save();
+        $user->save();
         return redirect()->route('usuario.index');
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\UserModel  $userModel
+     * @param  \App\User  $user
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
     {
-        $user = UserModel::find($id);
+        $user = User::find($id);
         $user->delete();
         return redirect()->route('usuario.index');
     }
