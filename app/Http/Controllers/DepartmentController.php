@@ -49,9 +49,10 @@ class DepartmentController extends Controller
      * @param  \App\Department  $department
      * @return \Illuminate\Http\Response
      */
-    public function show(Department $department)
+    public function show($id)
     {
-        //
+        $department = Department::find($id);
+        return view('department.show',compact('department'));
     }
 
     /**
@@ -60,9 +61,10 @@ class DepartmentController extends Controller
      * @param  \App\Department  $department
      * @return \Illuminate\Http\Response
      */
-    public function edit(Department $department)
+    public function edit($id)
     {
-        //
+        $department = Department::find($id);
+        return view('department.form',compact('department'));
     }
 
     /**
@@ -74,7 +76,10 @@ class DepartmentController extends Controller
      */
     public function update(Request $request, Department $department)
     {
-        //
+        $request->validate(['name'=>'required|max:55']);
+        $department->name = $request->name;
+        $department->save();
+        return redirect()->route('department.index');
     }
 
     /**
@@ -83,8 +88,10 @@ class DepartmentController extends Controller
      * @param  \App\Department  $department
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Department $department)
+    public function destroy($id)
     {
-        //
+        $department = Department::find($id);
+        $department->delete();
+        return redirect()->route('department.index');
     }
 }

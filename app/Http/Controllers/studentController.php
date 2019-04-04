@@ -111,8 +111,10 @@ class studentController extends Controller
      * @param  \App\Student  $student
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Student $student)
+    public function destroy($id)
     {
-        //
+        $student = Studen::fin($id);
+        $student->destroy();
+        return redirect()->route('student.index');
     }
 }

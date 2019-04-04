@@ -14,4 +14,7 @@ class Professor extends Model
     public function department(){
         return $this->belongsTo(Department::Class);
     }
+    public function group(){
+        return $this->hasMany(Group::Class);
+    }
 }
