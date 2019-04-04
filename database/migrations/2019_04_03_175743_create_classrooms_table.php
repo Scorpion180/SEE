@@ -17,6 +17,7 @@ class CreateClassroomsTable extends Migration
             $table->increments('id');
             $table->string('module');
             $table->string('classroom');
+            $table->timestamps();
         });
     }
 

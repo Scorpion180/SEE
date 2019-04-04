@@ -3,21 +3,21 @@
 @section('content')
 <div class="row">
     <div class="col-8 offset-2">
-    <h1>Usuarios</h1>
+    <h1>Profesores</h1>
     <table class="table table-striped table-dark">
   <thead>
     <tr>
       <th scope="col">#</th>
       <th scope="col">Nombre</th>
-      <th scope="col">Correo</th>
+      <th scope="col"></th>
     </tr>
   </thead>
   <tbody>
-  @foreach($docs as $doc)
+  @foreach($professors as $professor)
     <tr>
-      <td>{{$doc->id}}</td>
-      <td>{{$doc->name}}</td>
-      <td>{{$doc->email}}</td>
+      <td>{{$professor->id}}</td>
+      <td>{{$professor->User->name}}</td>
+      <td><a href="{{route('profesor.show',$professor->id)}}" class="btn btn-info btn-sm">detalle</a></td>
     </tr>
     @endforeach
   </tbody>

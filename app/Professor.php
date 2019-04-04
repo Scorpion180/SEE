@@ -8,7 +8,10 @@ class Professor extends Model
 {
     protected $fillable = [
         'user_id', 'department_id'];
-    public function User(){
-        return $this->hasOne('App\User');
+    public function user(){
+        return $this->belongsTo(User::Class);
+    }
+    public function department(){
+        return $this->belongsTo(Department::Class);
     }
 }

@@ -6,7 +6,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class Student extends Model
 {
-    public function User(){
-        return $this->hasOne('App\User');
+    public function user(){
+        return $this->belongsTo(User::Class);
+    }
+    public function carrer(){
+        return $this->belongsTo(Carrer::Class);
     }
 }

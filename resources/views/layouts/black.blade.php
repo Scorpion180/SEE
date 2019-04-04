@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en">
   <head>
-    <title>Hello, world!</title>
+    <title>SEE</title>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport" />
@@ -60,25 +60,41 @@
         <div class="collapse navbar-collapse justify-content-end">
           <ul class="navbar-nav">
             <li class="nav-item">
-              <a class="nav-link" href="#pablo">
-                <i class="tim-icons icon-bell-55"></i>Inicio
-              </a>
+              <button class="btn btn-default" href="/">Inicio</button>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="{{action('PagesController@info')}}">
-                <i class="tim-icons icon-bell-55"></i>Información
-              </a>
+              <div class="dropdown">
+                  <a class="btn btn-secondary" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      Profesores
+                    </a>
+                <div class="dropdown-menu dropdown-black" aria-labelledby="dropdownMenuLink">
+                  <a class="dropdown-item" href="{{action('ProfessorController@create')}}">Registro</a>
+                  <a class="dropdown-item" href="{{action('ProfessorController@index')}}">Mostrar</a>
+                </div>
+              </div>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="/equipo">
-                <i class="tim-icons icon-bell-55"></i>Equipo
-              </a>
+                <div class="dropdown">
+                    <a class="btn btn-secondary" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Alumnos
+                      </a>
+                  <div class="dropdown-menu dropdown-black" aria-labelledby="dropdownMenuLink">
+                    <a class="dropdown-item" href="{{action('studentController@create')}}">Registro</a>
+                    <a class="dropdown-item" href="{{action('studentController@index')}}">Mostrar</a>
+                  </div>
+                </div>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="{{action('UsuarioController@index')}}">
-                <i class="tim-icons icon-bell-55"></i>usuarios
-              </a>
-            </li>
+                <div class="dropdown">
+                    <a class="btn btn-secondary" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Departamento
+                      </a>
+                  <div class="dropdown-menu dropdown-black" aria-labelledby="dropdownMenuLink">
+                    <a class="dropdown-item" href="{{action('DepartmentController@create')}}">Registro</a>
+                    <a class="dropdown-item" href="{{action('DepartmentController@index')}}">Mostrar</a>
+                  </div>
+                </div>
+              </li>
              <!-- your navbar here -->
           </ul>
         </div>

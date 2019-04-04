@@ -20,6 +20,8 @@ class CreateStudentsTable extends Migration
 
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->foreign('carrer_id')->references('id')->on('carrers')->OnDelete('restrict');
+
+            $table->timestamps();
         });
     }
 

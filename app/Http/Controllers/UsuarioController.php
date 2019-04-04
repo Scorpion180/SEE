@@ -15,7 +15,7 @@ class UsuarioController extends Controller
     public function index()
     {
         $docs = User::all();
-        return view('users.usuarioIndex',compact('docs'));
+        return view('users.index',compact('docs'));
     }
 
     /**
@@ -25,7 +25,7 @@ class UsuarioController extends Controller
      */
     public function create()
     {
-        return view('users.usuarioForm');
+        return view('users.form');
     }
 
     /**
@@ -45,7 +45,7 @@ class UsuarioController extends Controller
         $usr->save();
 
         $docs = User::all();
-        return view('users.usuarioIndex',compact('docs'));
+        return view('users.index',compact('docs'));
     }
 
     /**
@@ -57,7 +57,7 @@ class UsuarioController extends Controller
     public function show($id)
     {
         $user = User::find($id);
-        return view('users.usuarioShow',compact('user'));
+        return view('users.show',compact('user'));
     }
 
     /**
@@ -69,7 +69,7 @@ class UsuarioController extends Controller
     public function edit($id)
     {
         $user = User::find($id);
-        return view("users.usuarioForm",compact('user'));
+        return view("users.form",compact('user'));
     }
 
     /**

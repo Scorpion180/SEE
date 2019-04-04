@@ -16,7 +16,8 @@ class ProfessorController extends Controller
      */
     public function index()
     {
-        //
+        $professors = Professor::all();
+        return view('professor.index',compact('professors'));
     }
 
     /**
@@ -27,7 +28,7 @@ class ProfessorController extends Controller
     public function create()
     {
         $departments = Department::all();
-        return view('professor.professorForm',compact('departments'));
+        return view('professor.form',compact('departments'));
     }
 
     /**
@@ -43,8 +44,7 @@ class ProfessorController extends Controller
         'email'=>'email|unique:users,email',
         'password'=>'required|min:9',
         'username'=>'required',
-        'code'=>'required|min:9|max:9',
-        'department_id'=>'required']);
+        'code'=>'required|min:9|max:9']);
         $usr = new User($request->except('department_id'));
         $usr->save();
         $professor = new Professor();
@@ -52,7 +52,8 @@ class ProfessorController extends Controller
         $professor->department_id=$request->department_id;
         
         $professor->save();
-        dd($professor->User());
+        $professors = Professor::all();
+        return view('professor.index',compact('professors'));
     }
 
     /**
@@ -61,9 +62,10 @@ class ProfessorController extends Controller
      * @param  \App\Professor  $professor
      * @return \Illuminate\Http\Response
      */
-    public function show(Professor $professor)
+    public function show($id)
     {
-        //
+        $professor = Professor::find($id);
+        return view('professor.show',compact('professor'));
     }
 
     /**
@@ -72,9 +74,11 @@ class ProfessorController extends Controller
      * @param  \App\Professor  $professor
      * @return \Illuminate\Http\Response
      */
-    public function edit(Professor $professor)
+    public function edit($id)
     {
-        //
+        $professor = Professor::find($id);
+        $departments = Department::all();
+        return view("professor.form",compact('departments','professor'));
     }
 
     /**
@@ -84,9 +88,26 @@ class ProfessorController extends Controller
      * @param  \App\Professor  $professor
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Professor $professor)
+    public function update(Request $request,$id)
     {
-        //
+        $professor = Professor::find($id);
+        $request->validate(['name'=>'required|max:55',
+        'email'=>'email',
+        'password'=>'required|min:9',
+        'username'=>'required',
+        'code'=>'required|min:9|max:9']);
+        $user = User::find($professor->user_id);
+        
+        $user->name = $request->name;
+        $user->email = $request->email;
+        $user->password = $request->password;
+        $user->username = $request->username;
+        $user->code = $request->code;
+        $user->save();
+        $professor->department_id=$request->department_id;
+        $professor->save();
+        $professors = Professor::all();
+        return view('professor.index',compact('professors'));
     }
 
     /**
@@ -95,8 +116,10 @@ class ProfessorController extends Controller
      * @param  \App\Professor  $professor
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Professor $professor)
+    public function destroy($id)
     {
-        //
+        $professor = Professor::find($id);
+        $professor->delete();
+        return redirect()->route('professor.index');
     }
 }

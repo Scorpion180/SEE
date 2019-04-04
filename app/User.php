@@ -27,13 +27,13 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
-    public function Professor(){
-        return $this->belongsTo('App\Professor');
+    public function professor(){
+        return $this->hasOne(Professor::Class);
     }
-    public function Student(){
-        return $this->belongsTo('App\Student');
+    public function student(){
+        return $this->hasOne(Student::Class);
     }
-    public function Admin(){
-        return $this->belongsTo('App\Admin');
+    public function admin(){
+        return $this->hasOne(Admin::Class);
     }
 }

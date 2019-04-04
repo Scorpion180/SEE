@@ -20,6 +20,7 @@ class CreateGroupProfessorTable extends Migration
 
             $table->foreign('group_id')->references('id')->on('groups')->onDelete('cascade');
             $table->foreign('professor_id')->references('id')->on('professors')->onDelete('restrict');
+            $table->timestamps();
         });
     }
 

@@ -26,6 +26,7 @@ class CreateGroupsTable extends Migration
             $table->foreign('day_id')->references('id')->on('days')->onDelete('restrict');
             $table->foreign('classroom_id')->references('id')->on('classrooms')->onDelete('restrict');
             $table->foreign('professor_id')->references('id')->on('professors')->onDelete('restrict');
+            $table->timestamps();
         });
     }
 
