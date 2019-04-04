@@ -4,12 +4,12 @@
 <div class="row">
     <div class="col-8 offset-2">
     <h1>Profesores</h1>
-    <table class="table table-striped table-dark">
+    <table class="table">
   <thead>
     <tr>
-      <th scope="col">#</th>
-      <th scope="col">Nombre</th>
-      <th scope="col"></th>
+      <th>#</th>
+      <th>Nombre</th>
+      <th></th>
     </tr>
   </thead>
   <tbody>
@@ -17,7 +17,13 @@
     <tr>
       <td>{{$professor->id}}</td>
       <td>{{$professor->User->name}}</td>
-      <td><a href="{{route('profesor.show',$professor->id)}}" class="btn btn-info btn-sm">detalle</a></td>
+      <td class="text-right">
+      <a href="{{route('profesor.show',$professor->id)}}">
+        <button type="button" rel="tooltip" class="btn btn-info btn-sm">
+          <i class="tim-icons icon-settings"></i>
+        </button>
+        </a>
+      </td>
     </tr>
     @endforeach
   </tbody>

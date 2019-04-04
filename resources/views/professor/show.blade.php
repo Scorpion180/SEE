@@ -2,38 +2,41 @@
 
 @section('content')
 <div class="row">
-    <div class="col-8 offset-2">
+    <div class="col-10 offset-1">
     <h1>Profesores</h1>
-    <table class="table table-striped table-dark">
+    <table class="table">
   <thead>
     <tr>
-      <th scope="col">#</th>
-      <th scope="col">Nombre</th>
-      <th scope="col">E-mail</th>
-      <th scope="col">Usuario</th>
-      <th scope="col">Departamento</th>
+      <th class="text-center">#</th>
+      <th>Nombre</th>
+      <th>E-mail</th>
+      <th>Usuario</th>
+      <th>Departamento</th>
+      <th class="text-right"></th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <td>{{$professor->id}}</td>
+      <td class="text-center">{{$professor->id}}</td>
       <td>{{$professor->user->name}}</td>
       <td>{{$professor->user->email}}</td>
       <td>{{$professor->user->username}}</td>
       <td>{{$professor->department->name}}</td>
+      <td class="td-actions text-right">
+      <a href="{{route('profesor.edit',$professor->id)}}">
+        <button type="button" rel="tooltip" class="btn btn-info btn-sm"> 
+            <i class="tim-icons icon-settings"></i>
+        </button>
+      </a>
+      <a href="{{route('profesor.destroy',$professor->id)}}">
+        <button type="button" rel="tooltip" class="btn btn-danger btn-sm">
+            <i class="tim-icons icon-simple-remove"></i>
+        </button>
+      </a>
+      </td>
     </tr>
   </tbody>
 </table>
     </div>
 </div>
-<div class="row">
-  <div class="col-1 offset-2">
-    <a href="{{route('profesor.edit',$professor->id)}}" class="btn btn-info btn-sm">Editar</a>
-  </div>
-  <div class="col-1">
-    <a href="{{route('profesor.destroy',$professor->id)}}" class="btn btn-danger btn-sm">Eliminar</a>
-  </div>
-</div>
-
-
 @endsection

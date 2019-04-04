@@ -53,7 +53,7 @@ class ProfessorController extends Controller
         
         $professor->save();
         $professors = Professor::all();
-        return view('professor.index',compact('professors'));
+        return view('profesor.index',compact('professors'));
     }
 
     /**
@@ -106,7 +106,7 @@ class ProfessorController extends Controller
         $user->save();
         $professor->department_id=$request->department_id;
         $professor->save();
-        return redirect()->route('professor.index');
+        return redirect()->route('profesor.index');
     }
 
     /**
