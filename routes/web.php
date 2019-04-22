@@ -46,4 +46,3 @@ Route::get('/bienvenida/{nombre}/{apellido?}','PagesController@bienvenido');
 Route::get('/equipo','PagesController@equipo');
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');

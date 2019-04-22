@@ -15,39 +15,30 @@
     <link href="{{asset('assets/css/black-dashboard.css?v=1.0.0')}}" rel="stylesheet" />
   </head>
   <body>
-<div class="wrapper ">
-  <div class="sidebar" data-color="green" data-background-color="purple">
-    <!--
-      Tip 1: You can change the color of the sidebar using: data-color="purple | azure | green | orange | danger"
-
-      Tip 2: you can also add an image using data-image tag
-  -->
-    <div class="logo">
-      <div href="http://www.creative-tim.com" class="simple-text logo-normal">
-       Sistema de evaluación <br>electrónica
+    <div class="wrapper ">
+      <div class="sidebar" data-color="green" data-background-color="purple">
+        <!--
+          Tip 1: You can change the color of the sidebar using: data-color="purple | azure | green | orange | danger"
+    
+          Tip 2: you can also add an image using data-image tag
+      -->
+        
+    
+        <div class="sidebar-wrapper">
+          <ul class="nav">
+            @yield("sidebar")
+    
+             <!-- your sidebar here -->
+          </ul>
+        </div>
       </div>
-    </div>
-
-    <div class="sidebar-wrapper">
-      <ul class="nav">
-        <li class="nav-item active  ">
-            <a class="nav-link" href="#0">
-                <i class="tim-icons icon-chart-pie-36"></i>
-                <p>Dashboard</p>
-            </a>
-        </li>
-
-         <!-- your sidebar here -->
-      </ul>
-    </div>
-  </div>
   <div class="main-panel">
     <!-- Navbar -->
     <nav class="navbar navbar-expand-lg navbar-transparent navbar-absolute fixed-top ">
       <div class="container-fluid">
         <div class="navbar-wrapper">
 
-          <a class="navbar-brand" href="#pablo">Dashboard</a>
+          <a class="navbar-brand" href="#pablo">Sistema de evaluacion<br>electronica</a>
         </div>
 
         <button class="navbar-toggler" type="button" data-toggle="collapse" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
@@ -59,7 +50,16 @@
 
         <div class="collapse navbar-collapse justify-content-end">
           <ul class="navbar-nav">
-            <li class="nav-item">
+              <li class="nav-item">
+                  <a class="nav-link" href="/">Inicio</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/">Acerca de</a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" href="/">Contacto</a>
+                    </li>
+            <!--<li class="nav-item">
               <button class="btn btn-default" href="/">Inicio</button>
             </li>
             <li class="nav-item">
@@ -94,7 +94,7 @@
                     <a class="dropdown-item" href="{{action('DepartmentController@index')}}">Mostrar</a>
                   </div>
                 </div>
-              </li>
+              </li>-->
              <!-- your navbar here -->
           </ul>
         </div>

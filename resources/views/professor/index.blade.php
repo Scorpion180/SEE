@@ -1,6 +1,17 @@
 @extends('layouts.black')
 
+@section('sidebar')
+
+    <li class="nav-item active  ">
+        <a class="nav-link" href="#0">
+            <i class="tim-icons icon-chart-pie-36"></i>
+            <p>Profesor</p>
+        </a>
+    </li>
+@endsection
+
 @section('content')
+
 <div class="row">
     <div class="col-8 offset-2">
     <h1>Profesores</h1>

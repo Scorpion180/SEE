@@ -42,6 +42,7 @@ class UsuarioController extends Controller
         'username'=>'required',
         'code'=>'required|min:9|max:9']);
         $usr = new User($request->all());
+        $usr->password = Hash::make($request['password']);
         $usr->save();
 
         $docs = User::all();

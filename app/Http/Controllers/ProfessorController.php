@@ -5,8 +5,10 @@ namespace App\Http\Controllers;
 use App\Professor;
 use App\User;
 use App\Department;
+use App\Admin;
 use Illuminate\Http\Request;
 
+use Illuminate\Support\Facades\Auth;
 class ProfessorController extends Controller
 {
     /**
@@ -14,6 +16,11 @@ class ProfessorController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function __construct()
+    {
+        $this->middleware('auth')->except('index');
+        $this->middleware('professor')->except('index','create');
+    }
     public function index()
     {
         $professors = Professor::all();
@@ -27,8 +34,15 @@ class ProfessorController extends Controller
      */
     public function create()
     {
-        $departments = Department::all();
-        return view('professor.form',compact('departments'));
+        $user = Auth::user();
+        if(($admin = User::find($user->id)->admin) != null){
+            $departments = Department::all();
+            return view('professor.form',compact('departments'));
+        }
+        else{
+            $message = 'No tienes permiso';
+            return view('default.error',compact('message'));
+        }
     }
 
     /**
@@ -76,9 +90,17 @@ class ProfessorController extends Controller
      */
     public function edit($id)
     {
-        $professor = Professor::find($id);
-        $departments = Department::all();
-        return view("professor.form",compact('departments','professor'));
+        $user = Auth::user();
+        $professor = User::find($user->id)->professor;
+        if($professor->user_id == $id){
+            $professor = Professor::find($id);
+            $departments = Department::all();
+            return view("professor.form",compact('departments','professor'));
+        }
+        else{
+            $message = 'No tienes permiso';
+            return view('default.error',compact('message'));
+        }
     }
 
     /**
@@ -117,8 +139,15 @@ class ProfessorController extends Controller
      */
     public function destroy($id)
     {
-        $professor = Professor::find($id);
-        $professor->delete();
-        return redirect()->route('professor.index');
+        $user = Auth::user();
+        if(($admin = User::find($user->id)->admin) != null){
+            $professor = Professor::find($id);
+            $professor->delete();
+            return redirect()->route('professor.index');
+        }
+        else{
+            $message = 'No tienes permiso';
+            return view('default.error',compact('message'));
+        }
     }
 }

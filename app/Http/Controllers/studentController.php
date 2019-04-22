@@ -96,7 +96,7 @@ class studentController extends Controller
         
         $user->name = $request->name;
         $user->email = $request->email;
-        $user->password = $request->password;
+        $user->password = Hash::make($request['password']);
         $user->username = $request->username;
         $user->code = $request->code;
         $user->save();
