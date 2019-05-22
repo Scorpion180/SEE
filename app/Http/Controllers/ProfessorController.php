@@ -18,8 +18,8 @@ class ProfessorController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth')->except('index');
-        $this->middleware('professor')->except('index','create');
+        $this->middleware('auth')->except('index','main_page');
+        $this->middleware('professor')->except('index','create','main_page');
     }
     public function index()
     {
@@ -149,5 +149,8 @@ class ProfessorController extends Controller
             $message = 'No tienes permiso';
             return view('default.error',compact('message'));
         }
+    }
+    public function main_page(){
+        return view("professor.main");
     }
 }

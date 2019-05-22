@@ -38,7 +38,7 @@
       <div class="container-fluid">
         <div class="navbar-wrapper">
 
-          <a class="navbar-brand" href="#pablo">Sistema de evaluacion<br>electronica</a>
+          <a class="navbar-brand" href="/home">Sistema de evaluacion<br>electronica</a>
         </div>
 
         <button class="navbar-toggler" type="button" data-toggle="collapse" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">

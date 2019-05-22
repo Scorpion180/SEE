@@ -13,9 +13,11 @@
 Route::get('/user','UserController@index')->name('user.index');
 
 Route::resource('usuario','UsuarioController');
+Route::get('profesor/main', 'ProfessorController@main_page');
 Route::resource('profesor','ProfessorController');
 Route::resource('department','DepartmentController');
 Route::resource('student','studentController');
+Route::resource('group','groupController');
 /*Route::get('/usuario/crear','UsuarioController@create');
 Route::get('/usuario/crear','UsuarioController@store');
 
@@ -29,12 +31,13 @@ Route::get('/usuario/eliminar','UsuarioController@destroy');*/
 Route::get('/', function () {
     return view('welcome');
 });
-
 Route::get('/info','PagesController@info');
 
 Route::get('/prueba','PagesController@prueba');
 
 Route::get('/contacto', 'PagesController@contacto');
+
+Route::get('/home', 'PagesController@home');
 
 //apellido? para indicar que puede o no recibirlo
 Route::get('/bienvenida/{nombre}/{apellido?}','PagesController@bienvenido');

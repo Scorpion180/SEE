@@ -3,6 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\Group;
+use App\Classroom;
+use App\Schedule;
+use App\Subject;
+use App\Day;
+use App\User;
+use App\Professor;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 
 class groupController extends Controller
@@ -24,7 +31,15 @@ class groupController extends Controller
      */
     public function create()
     {
-        //
+        $classrooms = Classroom::select('id','module','classroom')->get();
+        $schedules = Schedule::select('id','name')->get();
+        $subjects = Subject::select('id','name')->get();
+        $days = Day::select('id','name')->get();
+        $user = Auth::user();
+        //$p = $user->Professor;
+        $p = Professor::with('user:id')->get();
+        dd($p);
+        return view('groups.form',compact('classrooms','schedules','subjects','days','user'));
     }
 
     /**

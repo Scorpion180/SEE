@@ -22,4 +22,7 @@ class PagesController extends Controller
     public function prueba(){
         return view('layouts.black');
     }
+    public function home(){
+        return view("pages.home");
+    }
 }
