@@ -87,13 +87,14 @@
                             <div class="row">
                                 <div class="col-md-4 pr-md-1">
                                 <div class="form-group">
-                                    <label for="Professor">Profesor</label>
-                                    <input type="text" class="form-control" name="professor_id" value="{{$user->professor->id}}">
+                                    <label for="Codigo del profesor">Codigo del profesor</label>
+                                    <input type="text" class="form-control" name="professor_id" value="{{$professor->id}}" readonly="true">
                                 </div>
                                 </div>
-                                <div class="col-md-8 pr-md-1">
+                                <div class="col-md-6 pr-md-1">
+                                <label for="Nombre">Nombre</label>
                                 <div class="form-group">
-                                    <input type="text" id="disabledTextInput" class="form-control" name="" value="{{$user->name}}">
+                                    <input type="text" class="form-control" name="user_name" value="{{$user->name}}" disabled>
                                 </div>
                                 </div>
                             </div>

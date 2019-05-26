@@ -6,6 +6,7 @@ use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
+use Illuminate\Support\Facades\Hash;
 class User extends Authenticatable
 {
     use Notifiable;
@@ -24,6 +25,14 @@ class User extends Authenticatable
      *
      * @var array
      */
+    public function setPasswordAttribute($value)
+    {
+        $this->attributes['password'] = Hash::make($value);
+    }
+    public function getNameUpperAttribute()
+    {
+        return strtoupper($this->name);
+    }
     protected $hidden = [
         'password', 'remember_token',
     ];

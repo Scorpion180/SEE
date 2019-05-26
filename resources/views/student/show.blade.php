@@ -1,39 +1,66 @@
 @extends('layouts.black')
 
 @section('content')
-<div class="row">
-    <div class="col-8 offset-2">
-    <h1>Estudiantes</h1>
-    <table class="table table-striped table-dark">
-  <thead>
-    <tr>
-      <th scope="col">#</th>
-      <th scope="col">Nombre</th>
-      <th scope="col">E-mail</th>
-      <th scope="col">Usuario</th>
-      <th scope="col">Carrera</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>{{$student->id}}</td>
-      <td>{{$student->user->name}}</td>
-      <td>{{$student->user->email}}</td>
-      <td>{{$student->user->username}}</td>
-      <td>{{$student->carrer->name}}</td>
-    </tr>
-  </tbody>
-</table>
+    <div class="row">
+      <div class="col-md-8">
+        <table class="table">
+          <thead>
+            <tr>
+              <th>
+                Perfil del alumno
+              </th>
+              <th></th>
+              <th></th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th class="link">
+                Nombre
+              </th>
+              <th>
+                {{$student->user->name_upper}}
+              </th>
+              <th class="link">Codigo</th>
+              <th>{{$student->id}}</th>
+            </tr>
+            <tr>
+                <th class="link">
+                  Correo
+                </th>
+                <th>
+                  {{$student->user->email}}
+                </th>
+                <th class="link">Carrera</th>
+                <th>{{$student->carrer->name}}</th>
+              </tr>
+              <tr>
+                <th class="link">
+                  Usuario
+                </th>
+                <th>
+                  {{$student->user->username}}
+                </th>
+                <th></th>
+              <th></th>
+              </tr>
+          </tbody>
+          <tfoot>
+            <tr>
+              <th>
+                  <a href="{{route('student.edit',$student->id)}}">
+                      <button type="button" rel="tooltip" class="btn btn-info btn-sm"> 
+                          <i class="tim-icons icon-settings"></i>
+                      </button>
+                  </a>
+              </th>
+              <th></th>
+              <th></th>
+              <th></th>
+            </tr>
+          </tfoot>
+        </table>
+      </div>
     </div>
-</div>
-<div class="row">
-  <div class="col-1 offset-2">
-    <a href="{{route('student.edit',$student->id)}}" class="btn btn-info btn-sm">Editar</a>
-  </div>
-  <div class="col-1">
-    <a href="{{route('student.destroy',$student->id)}}" class="btn btn-danger btn-sm">Eliminar</a>
-  </div>
-</div>
-
-
 @endsection

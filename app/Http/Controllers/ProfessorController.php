@@ -7,8 +7,8 @@ use App\User;
 use App\Department;
 use App\Admin;
 use Illuminate\Http\Request;
-
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
 class ProfessorController extends Controller
 {
     /**
@@ -18,11 +18,12 @@ class ProfessorController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth')->except('index','main_page');
-        $this->middleware('professor')->except('index','create','main_page');
+        //$this->middleware('auth')->except('index','main_page');
+        //$this->middleware('professor')->except('index','create','main_page');
     }
     public function index()
     {
+        
         $professors = Professor::all();
         return view('professor.index',compact('professors'));
     }
@@ -34,15 +35,15 @@ class ProfessorController extends Controller
      */
     public function create()
     {
-        $user = Auth::user();
-        if(($admin = User::find($user->id)->admin) != null){
+        //$user = Auth::user();
+        //if(($admin = User::find($user->id)->admin) != null){
             $departments = Department::all();
             return view('professor.form',compact('departments'));
-        }
-        else{
-            $message = 'No tienes permiso';
-            return view('default.error',compact('message'));
-        }
+        //}
+        //else{
+        //    $message = 'No tienes permiso';
+        //    return view('default.error',compact('message'));
+        //}
     }
 
     /**
@@ -59,13 +60,14 @@ class ProfessorController extends Controller
         'password'=>'required|min:9',
         'username'=>'required',
         'code'=>'required|min:9|max:9']);
+        //dd($request-);
         $usr = new User($request->except('department_id'));
         $usr->save();
         $professor = new Professor();
         $professor->user_id=$usr->id;
         $professor->department_id=$request->department_id;
-        
-        $professor->save();
+        $usr->professor()->save($professor);
+        //dd($usr->professor);
         $professors = Professor::all();
         return view('profesor.index',compact('professors'));
     }

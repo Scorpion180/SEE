@@ -22,15 +22,21 @@ class LoginController extends Controller
         if(Auth::attempt($credentials)){
             $user = Auth::user();
             
-            //if(($professor = User::find($user->id)->professor) != null)
-            //return 'bienvenido';
+            if((User::find($user->id)->professor) != null)
+                session(['type' => 'p']);
+            elseif((User::find($user->id)->student) != null)
+                session(['type' => 's']);
 
             //else
             //return 'no holi';
-            return view('home');
+            return view('pages.home');
         }
         else{
-            return 'No eres tú';
+            $msg = "Datos erroneos";
+            return view('auth.login',compact('msg'));
         }
     }
+    public function logout() {
+        return redirect('login')->with(Auth::logout());
+      }
 }

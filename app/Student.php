@@ -14,4 +14,7 @@ class Student extends Model
     public function carrer(){
         return $this->belongsTo(Carrer::Class);
     }
+    public function groups(){
+        return $this->belongsToMany(Group::Class);
+    }
 }

@@ -14,38 +14,28 @@ Route::get('/user','UserController@index')->name('user.index');
 
 Route::resource('usuario','UsuarioController');
 Route::get('profesor/main', 'ProfessorController@main_page');
+Route::get('profesor/groups/{id}', 'groupController@indexProfessor')->name('indexGroups');
 Route::resource('profesor','ProfessorController');
 Route::resource('department','DepartmentController');
+Route::get('student/groups/{id}', 'groupController@indexStudent')->name('indexStudentGroups');
 Route::resource('student','studentController');
+Route::get('profesor/groups/show/{id}', 'groupController@professorShow')->name('showGroup');
+Route::get('student/groups/show/{id}', 'groupController@studentShow')->name('showStudentGroup');
+Route::get('student/groups/register/{id}', 'groupController@studentRegister')->name('studentReg');
 Route::resource('group','groupController');
-/*Route::get('/usuario/crear','UsuarioController@create');
-Route::get('/usuario/crear','UsuarioController@store');
-
-Route::get('/usuario/{id}','UsuarioController@show');
-
-Route::get('/usuario/editar','UsuarioController@edit');
-Route::get('/usuario/editar','UsuarioController@update');
-
-Route::get('/usuario/eliminar','UsuarioController@destroy');*/
-
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('evidence/create/{group_id}','evidenceController@create')->name('createEvidence');
+Route::resource('evidence','evidenceController',['except' => ['create']]);
+Route::get('publication/create/{group_id}','publicationController@create')->name('addPublication');
+Route::resource('publication','publicationController',['except' => ['create']]);
+Route::resource('file','fileController');
 Route::get('/info','PagesController@info');
 
-Route::get('/prueba','PagesController@prueba');
+Route::get('evidence/submit/{evidence_id}/{user_id}','deliveredController@create')->name('submitEvidence');
+Route::resource('delivered','deliveredController',['except' => ['create']]);
 
 Route::get('/contacto', 'PagesController@contacto');
 
-Route::get('/home', 'PagesController@home');
+Route::get('/home', 'PagesController@home')->name('home');
 
-//apellido? para indicar que puede o no recibirlo
-Route::get('/bienvenida/{nombre}/{apellido?}','PagesController@bienvenido');
-//Para mandar valores a la vista
-    //->with(['nombre'=>$nombre,'apellido'=>$apellido]);
-
-    //Compact para los mismos nombres de variables que recibiste
-    //return view('pages.bienvenida',compact('nombre','apellido'));
-Route::get('/equipo','PagesController@equipo');
 Auth::routes();
-
+Route::get('logout','\App\Http\Controllers\Auth\LoginController@logout');

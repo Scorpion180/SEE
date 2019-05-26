@@ -19,8 +19,9 @@ class CheckProfessor
     {
         $user = Auth::user();
         $professor = User::find($user->id)->professor;
-        if($professor != null)
+        if($professor != null){
             return $next($request);
+        }
         else{
             $message = 'No tienes permiso';
             return view('default.error',compact('message'));

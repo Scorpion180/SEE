@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateGroupProfessorTable extends Migration
+class CreateEvidenceTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,13 @@ class CreateGroupProfessorTable extends Migration
      */
     public function up()
     {
-        Schema::create('group_professor', function (Blueprint $table) {
+        Schema::create('evidences', function (Blueprint $table) {
             $table->increments('id');
             $table->unsignedInteger('group_id');
-            $table->unsignedInteger('professor_id');
-
-            $table->foreign('group_id')->references('id')->on('groups')->onDelete('cascade');
-            $table->foreign('professor_id')->references('id')->on('professors')->onDelete('restrict');
+            $table->string('name');
+            $table->date('due_date');
+            $table->string('description');
+            $table->softDeletes();
             $table->timestamps();
         });
     }
@@ -31,8 +31,6 @@ class CreateGroupProfessorTable extends Migration
      */
     public function down()
     {
-        Schema::table('group_professor', function (Blueprint $table) {
-            //
-        });
+        Schema::dropIfExists('evidence');
     }
 }

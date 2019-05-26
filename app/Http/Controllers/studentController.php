@@ -49,7 +49,7 @@ class studentController extends Controller
         $student = new Student();
         $student->user_id = $usr->id;
         $student->carrer_id = $request->carrer_id;
-        $student->save();
+        $usr->student()->save($student);
         return redirect()->route('student.index');
     }
 
@@ -61,7 +61,7 @@ class studentController extends Controller
      */
     public function show($id)
     {
-        $student = Student::find($id);
+        $student = User::find($id)->student;
         return view('student.show',compact('student'));
     }
 

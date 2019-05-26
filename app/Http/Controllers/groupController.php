@@ -9,6 +9,7 @@ use App\Subject;
 use App\Day;
 use App\User;
 use App\Professor;
+use App\Student;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 
@@ -19,9 +20,22 @@ class groupController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function indexProfessor($id)
+    {
+        $p_id = User::find($id)->professor->id;
+        $groups = Group::with('professor')->where('professor_id',$p_id)->get();
+        return view('groups.indexProfessor',compact('groups'));
+    }
+    public function indexStudent($id)
+    {
+        $student = User::find($id)->student;
+        $groups = $student->groups;
+        return view('groups.indexProfessor',compact('groups'));
+    }
     public function index()
     {
-        //
+        $groups = Group::all();
+        return view('groups.index',compact('groups'));
     }
 
     /**
@@ -29,6 +43,13 @@ class groupController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function studentRegister($id){
+        $group = Group::find($id);
+        $usr_id = Auth::user()->id;
+        $student_id = User::find($usr_id)->student->id;
+        $group->students()->attach($student_id);
+        return view('pages.home');
+    }
     public function create()
     {
         $classrooms = Classroom::select('id','module','classroom')->get();
@@ -37,9 +58,8 @@ class groupController extends Controller
         $days = Day::select('id','name')->get();
         $user = Auth::user();
         //$p = $user->Professor;
-        $p = Professor::with('user:id')->get();
-        dd($p);
-        return view('groups.form',compact('classrooms','schedules','subjects','days','user'));
+        $professor = User::find($user->id)->professor;
+        return view('groups.form',compact('classrooms','schedules','subjects','days','user','professor'));
     }
 
     /**
@@ -50,7 +70,19 @@ class groupController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate(['subject_id'=>'required',
+        'schedule_id'=>'required',
+        'day_id'=>'required',
+        'classroom_id'=>'required',
+        'professor_id'=>'required']);
+        //dd($request->all());
+        $group = new Group($request->except('_token'));
+        $id = Auth::user()->id;
+        $usr = User::find($id);
+        $usr->professor->group()->save($group);
+        //$group->save();
+        $groups = Group::select('subject_id','schedule_id','day_id','classroom_id','professor_id')->get();
+        return view('groups.index',compact('groups'));
     }
 
     /**
@@ -63,7 +95,28 @@ class groupController extends Controller
     {
         //
     }
-
+    public function professorShow($id)
+    {
+        $a=array();
+        $group = Group::find($id);
+        return view('groups.menu',compact('group','a'));
+    }
+    public function studentShow($id)
+    {
+        $u_id = Auth::user()->id;
+        $group = Group::find($id);
+        $evidences = $group->evidence;
+        $a = array();
+        foreach($evidences as $e){
+            $d = $e->delivereds;
+            foreach($d as $i){
+                if($i->student_id == $u_id)
+                    array_push($a,$e->id);
+            }
+        }
+        //dd($group->evidence);
+        return view('groups.menu',compact('group','a'));
+    }
     /**
      * Show the form for editing the specified resource.
      *

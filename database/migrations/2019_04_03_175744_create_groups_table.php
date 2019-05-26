@@ -20,6 +20,7 @@ class CreateGroupsTable extends Migration
             $table->unsignedInteger('day_id');
             $table->unsignedInteger('classroom_id');
             $table->unsignedInteger('professor_id');
+            $table->softDeletes();
             
             $table->foreign('subject_id')->references('id')->on('subjects')->onDelete('restrict');
             $table->foreign('schedule_id')->references('id')->on('schedules')->onDelete('restrict');
