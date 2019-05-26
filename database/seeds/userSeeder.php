@@ -20,16 +20,16 @@ class userSeeder extends Seeder
         'email'=>'sarita@gmail.com',
         'code'=>'123451239',
         'username'=>'sarita123',
-        'password'=>'$2y$10$TKh8H1.PfQx37YgCzwiKb.KjNyWgaHb9cbcoQgdIVFlYg7B77UdFm']);
+        'password'=>'123456789']);
         User::create(['name'=>'Roberto Gongora Arjona', 
         'email'=>'silverino@gmail.com',
         'code'=>'129033745',
         'username'=>'silverwing',
-        'password'=>'$2y$10$TKh8H1.PfQx37YgCzwiKb.KjNyWgaHb9cbcoQgdIVFlYg7B77UdFm']);
+        'password'=>'123456789']);
         User::create(['name'=>'Elizabeth Solis', 
         'email'=>'eli@gmail.com',
         'code'=>'283456812',
         'username'=>'elitrope',
-        'password'=>'$2y$10$TKh8H1.PfQx37YgCzwiKb.KjNyWgaHb9cbcoQgdIVFlYg7B77UdFm']);
+        'password'=>'123456789']);
     }
 }

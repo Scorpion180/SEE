@@ -25,8 +25,16 @@
       @endif
         <button type="button" rel="tooltip" class="btn btn-info btn-sm">detalle
         </button>
-        
         </a>
+      </td>
+      <td>
+        @if(Session::get('type') == 'p')
+        {!! Form::open(['route' => ['group.destroy', $group], 'method' => 'delete']) !!}
+          <button class="btn btn-sm btn-danger" type="submit">
+            Borrar
+          </button>
+        {!! Form::close() !!}
+        @endif
       </td>
     </tr>
     @endforeach

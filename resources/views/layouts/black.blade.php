@@ -52,32 +52,19 @@
                      </li>
                   @endif
                   @if(Session::get('type') == 's')
-                        <li class="dropdown show">
-                              <a class="dropdown-toggle" data-toggle="dropdown" href="#" aria-haspopup="false" aria-expanded="false">
-                                    <i class="tim-icons icon-book-bookmark"></i>
-                                    <p>Grupos</p>
-                                    <b class="caret d-none d-lg-block d-xl-block"></b>
-                              <p class="d-lg-none">
-                              Log out
-                              </p>
-                              </a>
-                              
-                              <ul class="dropdown-menu dropdown-black" aria-labelledby="dropdownMenuLink">
-                                 <li>
-                                 <a href="{{route('group.index')}}" class="dropdown-item">Nuevo</a>
-                                 </li>
-                                 <li>
-                                       <a href="{{route('indexStudentGroups',Auth::user()->id)}}" class="dropdown-item">Listado</a>
-                                 </li>
-                              </ul>
-                           </li>
-                           <li>
-                     <a href="">
-                        <i class="tim-icons icon-bullet-list-67"></i>
-                        <p>Pendientes</p>
-                     </a>
-                     </li>
-                  <li>
+                        <li class=>
+                           <a href="{{route('group.index')}}">
+                              <i class="tim-icons icon-book-bookmark"></i>
+                              <p>Nuevo grupo</p>
+                           </a>
+                        </li>
+                        <li>
+                           <a href="{{route('indexStudentGroups',Auth::user()->id)}}">
+                              <i class="tim-icons icon-book-bookmark"></i>
+                              <p>Lista de grupos</p>
+                           </a>
+                        </li>
+                        <li>
                         <a href="{{route('student.show',Auth::user()->id)}}">
                            <i class="tim-icons icon-badge"></i>
                            <p>Perfil</p>

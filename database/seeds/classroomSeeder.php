@@ -16,5 +16,6 @@ class classroomSeeder extends Seeder
         Classroom::create(['module'=>'x','classroom'=>'04']);
         Classroom::create(['module'=>'x','classroom'=>'05']);
         Classroom::create(['module'=>'x','classroom'=>'06']);
+        
     }
 }

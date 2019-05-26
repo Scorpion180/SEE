@@ -14,5 +14,6 @@ class publicationSeeder extends Seeder
         Publication::create([
             'title'=>'Holi', 'description'=>'IDK','group_id'=>'1'
         ]);
+        factory(App\Publication::class, 15)->create();
     }
 }

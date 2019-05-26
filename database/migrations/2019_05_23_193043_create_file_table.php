@@ -13,8 +13,8 @@ class CreateFiletable extends Migration
     {
         Schema::create('files', function (Blueprint $table) {
             $table->increments('id');
-            $table->unsignedInteger('fileable_id');
-            $table->string('fileable_type');
+            $table->unsignedInteger('file_id');
+            $table->string('file_type');
             $table->string('name');
             $table->string('hashed');
             $table->string('mime');

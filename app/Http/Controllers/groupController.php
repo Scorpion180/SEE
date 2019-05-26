@@ -45,9 +45,13 @@ class groupController extends Controller
      */
     public function studentRegister($id){
         $group = Group::find($id);
+        
         $usr_id = Auth::user()->id;
+
         $student_id = User::find($usr_id)->student->id;
+        //dd($group);
         $group->students()->attach($student_id);
+        
         return view('pages.home');
     }
     public function create()
@@ -80,7 +84,6 @@ class groupController extends Controller
         $id = Auth::user()->id;
         $usr = User::find($id);
         $usr->professor->group()->save($group);
-        //$group->save();
         $groups = Group::select('subject_id','schedule_id','day_id','classroom_id','professor_id')->get();
         return view('groups.index',compact('groups'));
     }
@@ -148,6 +151,7 @@ class groupController extends Controller
      */
     public function destroy(Group $group)
     {
-        //
+        $group->delete();
+        return redirect()->back();
     }
 }
