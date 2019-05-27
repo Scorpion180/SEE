@@ -85,7 +85,7 @@ class groupController extends Controller
         $usr = User::find($id);
         $usr->professor->group()->save($group);
         $groups = Group::select('subject_id','schedule_id','day_id','classroom_id','professor_id')->get();
-        return view('groups.index',compact('groups'));
+        return view('pages.home');
     }
 
     /**
@@ -128,7 +128,14 @@ class groupController extends Controller
      */
     public function edit(Group $group)
     {
-        //
+        $classrooms = Classroom::select('id','module','classroom')->get();
+        $schedules = Schedule::select('id','name')->get();
+        $subjects = Subject::select('id','name')->get();
+        $days = Day::select('id','name')->get();
+        $user = Auth::user();
+        //$p = $user->Professor;
+        $professor = User::find($user->id)->professor;
+        return view('groups.form',compact('group','classrooms','schedules','subjects','days','user','professor'));
     }
 
     /**
@@ -140,7 +147,20 @@ class groupController extends Controller
      */
     public function update(Request $request, Group $group)
     {
-        //
+        $request->validate(['subject_id'=>'required',
+        'schedule_id'=>'required',
+        'day_id'=>'required',
+        'classroom_id'=>'required',
+        'professor_id'=>'required']);
+
+        $group->subject_id = $request->input('subject_id');
+        $group->schedule_id = $request->input('schedule_id');
+        $group->day_id = $request->input('day_id');
+        $group->classroom_id = $request->input('classroom_id');
+        $group->professor_id = $request->input('professor_id');
+
+        $group->save();
+        return view('pages.home');
     }
 
     /**

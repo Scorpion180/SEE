@@ -29,7 +29,7 @@ Route::get('publication/create/{group_id}','publicationController@create')->name
 Route::resource('publication','publicationController',['except' => ['create']]);
 Route::resource('file','fileController');
 Route::get('/info','PagesController@info');
-
+//Route::get('mail','app\Mail\DeliveredEvidence');
 Route::get('evidence/submit/{evidence_id}/{user_id}','deliveredController@create')->name('submitEvidence');
 Route::resource('delivered','deliveredController',['except' => ['create']]);
 

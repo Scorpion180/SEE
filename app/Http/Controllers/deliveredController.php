@@ -1,10 +1,11 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use Illuminate\Support\Facades\Mail;
 use App\Delivered;
 use App\Evidence;
 use App\User;
+use App\Mail\DeliveredEvidence;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 class deliveredController extends Controller
@@ -50,6 +51,7 @@ class deliveredController extends Controller
         $delivered = new Delivered(['student_id'=>$student->id,'evidence_id'=>$request->evidence_id]);
         $evidence = Evidence::find($request->evidence_id);
         $evidence->delivereds()->save($delivered);
+        Mail::to($student->email)->send(new DeliveredEvidence($evidence));
         $message = "Entregado!";
         return view('pages.home',compact($message));
     }

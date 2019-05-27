@@ -34,11 +34,32 @@
             Borrar
           </button>
         {!! Form::close() !!}
+        
+        <td>
+            <a href="{{route('group.edit',$group)}}">
+                <button type="button" rel="tooltip" class="btn btn-info btn-sm">
+                  Editar
+                </button>
+            </a>
+            </td>
         @endif
       </td>
     </tr>
     @endforeach
   </tbody>
+  <tfoot>
+    <tr>
+        <td>
+            @if(Session::get('type') == 'p')
+            <a href="{{route('group.create')}}">
+                <button type="button" rel="tooltip" class="btn btn-info btn-sm">
+                  Nuevo
+                </button>
+            </a>
+            @endif
+            </td>
+    </tr>
+  </tfoot>
 </table>
     </div>
 </div>

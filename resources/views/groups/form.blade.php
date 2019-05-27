@@ -22,7 +22,7 @@
                         @endif
 
                         @if(isset($group))
-                        <form action="{{route('group.update',$group->id)}}" method="POST">
+                        <form action="{{route('group.update',$group)}}" method="POST">
                         <input type="hidden" name="_method" value="PATCH">
                         @else
                             <form action="{{route('group.store')}}" method="POST">
