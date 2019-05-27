@@ -45,7 +45,7 @@
                         </a>
                       </li>
                   <li>
-                        <a href="">
+                        <a href="{{route('profesor.show',Auth::user()->id)}}">
                            <i class="tim-icons icon-badge"></i>
                            <p>Perfil</p>
                         </a>

@@ -20,6 +20,11 @@ class groupController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function __construct()
+    {
+        $this->middleware('auth')->except('index');
+        $this->middleware('professor')->except('indexStudent','index','studentRegister','studentShow');
+    }
     public function indexProfessor($id)
     {
         $p_id = User::find($id)->professor->id;
