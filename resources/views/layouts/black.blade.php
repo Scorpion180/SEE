@@ -147,6 +147,11 @@
          <!-- End Navbar -->
          <div class="content">
          <div class="container-fluid">
+            @if(isset($message))
+               <div class="alert alert-primary" role="alert">
+                  {{$message}}
+               </div>
+            @endif
          <!-- your content here -->
          @yield('content')
          </div>

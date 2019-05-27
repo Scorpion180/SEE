@@ -22,7 +22,7 @@ class groupController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth')->except('index');
+        $this->middleware('auth');
         $this->middleware('professor')->except('indexStudent','index','studentRegister','studentShow');
     }
     public function indexProfessor($id)
@@ -53,9 +53,16 @@ class groupController extends Controller
         
         $usr_id = Auth::user()->id;
 
-        $student_id = User::find($usr_id)->student->id;
+        $student = User::find($usr_id)->student;
+        $s_groups = $student->groups;
+        foreach($s_groups as $g){
+            if($g->id == $id){
+                $message = 'Ya registrado';
+                return view('pages.home',compact('message'));
+            }
+        }
         //dd($group);
-        $group->students()->attach($student_id);
+        $group->students()->attach($student->id);
         
         return view('pages.home');
     }
