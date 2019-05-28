@@ -1,6 +1,6 @@
 # Sistema de evaluación electrónica
 
-Control y gestión de la evaluación de clases para docentes de todos lo niveles educativos incluyendo evaluación de trabajos
+Control y gestión de clases para docentes de todos lo niveles educativos
 # Autor
 -Efren Hernández Doroteo
 # Instalación
