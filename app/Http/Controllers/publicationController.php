@@ -16,7 +16,7 @@ class publicationController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
-        $this->middleware('professor');
+        $this->middleware('professor')->except('show');
     }
     public function index()
     {

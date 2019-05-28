@@ -18,7 +18,7 @@ class ProfessorController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth')->except('index','main_page');
+        $this->middleware('auth')->except('index','main_page','create');
         $this->middleware('professor')->except('index','create','main_page');
     }
     public function index()
