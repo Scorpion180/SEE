@@ -30,7 +30,7 @@
             -->
          <div class="logo">
             <a href="" class="simple-text logo-normal">
-            Bienvenido! <br>
+            Bienvenido! @if(Session::get('type') == 'p') profesor @else alumno @endif <br>
             {{Auth::user()->name}}
             </a>
          </div>
