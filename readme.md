@@ -17,11 +17,5 @@ php artisan serve
 ```
 Las contraseñas de prueba son 123456789
 
-El manejo de correos usa la configuracion del .env con smtp de gmail
-MAIL_DRIVER=smtp
-MAIL_HOST=smtp.gmail.com
-MAIL_PORT=587
-MAIL_USERNAME=fakescorpionsensual@gmail.com
-MAIL_PASSWORD=8v3O4UA$uc#Xbq3ho59F7Ui
-MAIL_ENCRYPTION=tls
+El manejo de correos usa la configuracion del .env
 ```
